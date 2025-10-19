@@ -5,11 +5,13 @@ from ship2 import Ship2
 class Screen:
     """создадим класс описывающий экран"""
 
+
+
     def __init__(self):
         """ инициализация экрана"""
         self.color = (30,150,250)
-        self.screen_width = 800
-        self.screen_height = 800
+        self.screen_width =   700
+        self.screen_height =  800
         self.screen = pygame.display.set_mode((self.screen_width,self.screen_height))
         self.ship = Ship2(self.screen)
 
