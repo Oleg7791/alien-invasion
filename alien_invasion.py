@@ -67,6 +67,7 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prep_score()
+            self.sb.prep_level()
 
             # очистка списков пришельцев и снарядов
             self.aliens.empty()
@@ -98,7 +99,7 @@ class AlienInvasion:
             self.ship.moving_left = False
 
     def _fire_bullet(self):
-        """ создание нового снаряда и включение его в группу  bullets"""
+        """ создание нового снаряда и включение его в группу bullets"""
         if len(self.bullets) < self.settings.bullet_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
@@ -130,6 +131,9 @@ class AlienInvasion:
             # уничтожение существующих снарядов и создание нового флота
             self.bullets.empty()
             self.settings.increase_speed()
+            # увеличение уровня
+            self.stats.level += 1
+            self.sb.prep_level()
             self._create_fleet()
 
     def _create_fleet(self):
@@ -183,7 +187,7 @@ class AlienInvasion:
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
 
-        # проверка добрались ли пришельцы до нижнего края экрана
+        # проверка, добрались ли пришельцы до нижнего края экрана
         self._check_aliens_bottom()
 
     def _ship_hit(self):
@@ -208,11 +212,11 @@ class AlienInvasion:
             pygame.mouse.set_visible(True)
 
     def _check_aliens_bottom(self):
-        """ проверяет добрались ли пришельцы до нижнего края экрана"""
+        """ проверяет, добрались ли пришельцы до нижнего края экрана"""
         screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
-                # происходит тоже, что и при столкновении с кораблем
+                # происходит то же, что и при столкновении с кораблем
                 self._ship_hit()
                 break
 
