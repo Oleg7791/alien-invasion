@@ -131,10 +131,11 @@ class AlienInvasion:
             # уничтожение существующих снарядов и создание нового флота
             self.bullets.empty()
             self.settings.increase_speed()
+            self._create_fleet()
             # увеличение уровня
             self.stats.level += 1
             self.sb.prep_level()
-            self._create_fleet()
+
 
     def _create_fleet(self):
         """создание флота вторжения"""
