@@ -20,7 +20,7 @@ class Scoreboard:
         """ преобразует текущий счет в графическое изображение"""
         score_str = str(self.stats.score)
         self.score_image = self.font.render(score_str, True,
-                                            self.text_color, self.settings.bg_color)
+                                            self.text_color, self.settings.bg_color_score_board)
 
         # вывод счета в правой верхней части экрана
         self.score_rect = self.score_image.get_rect()

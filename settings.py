@@ -8,6 +8,7 @@ class Settings:
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (20, 20, 220)
+        self.bg_color_score_board = (200,20,200)
         # настройки корабля
         #self.ship_speed = 1
         self.ship_limit = 3
