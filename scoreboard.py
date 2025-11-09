@@ -24,6 +24,7 @@ class Scoreboard:
         self.prep_level()
         self.prep_ships()
 
+
     def prep_score(self):
         """ преобразует текущий счет в графическое изображение"""
         round_score = round(self.stats.score, -1)
