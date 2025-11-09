@@ -68,6 +68,7 @@ class AlienInvasion:
             self.stats.game_active = True
             self.sb.prep_score()
             self.sb.prep_level()
+            self.sb.prep_ships()
 
             # очистка списков пришельцев и снарядов
             self.aliens.empty()
@@ -163,7 +164,7 @@ class AlienInvasion:
         alien_width, alien_height = alien.rect.size
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
-        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        alien.rect.y = 60 + alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
     def _check_fleet_edges(self):
@@ -195,8 +196,9 @@ class AlienInvasion:
         """ Обрабатывает столкновение корабля с пришельцем"""
 
         if self.stats.ships_left > 0:
-            # уменьшение количество кораблей (ship_left)
+            # уменьшение количество кораблей (ship_left) и обновление панели счета
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             # очистка списков пришельцев и снарядов
             self.aliens.empty()
